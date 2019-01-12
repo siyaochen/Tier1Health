@@ -9,5 +9,5 @@ client = Client(account_sid, auth_token)
 client.messages.create(
     to = os.environ["MY_PHONE_NUMBER"],
     from_ = "+16476967454",
-    body = "Twilio test message!"
+    body = "\nHey,\nRemember to enter your diet and measured weight for today!"
 )
