@@ -19,79 +19,219 @@ from .forms import StatisticForm
 
 
 # os.environ["MY_PHONE_NUMBER"]
-def myFirstChart(request):
 
-    #Chart data is passed to the `dataSource` parameter, like a dictionary in the form of key-value pairs.
-    dataSource = OrderedDict()
+def results_weight_page(request):
+    # Chart data is passed to the `dataSource` parameter, as dict, in the form of key-value pairs.
+    dataSource = {}
+    dataSource['chart'] = { 
+        "caption": "Weight Statistics",
+            "xAxisName": "Day",
+            "yAxisName": "Kg",
+            "theme": "zune"
+        }
 
-    # The `chartConfig` dict contains key-value pairs of data for chart attribute
-    chartConfig = OrderedDict()
-    chartConfig["caption"] = "Countries With Most Oil Reserves [2017-18]"
-    chartConfig["subCaption"] = "In MMbbl = One Million barrels"
-    chartConfig["xAxisName"] = "Country"
-    chartConfig["yAxisName"] = "Reserves (MMbbl)"
-    chartConfig["numberSuffix"] = "K"
-    chartConfig["theme"] = "fusion"
+    # The data for the chart should be in an array where each element of the array is a JSON object
+    # having the `label` and `value` as key value pair.
 
-    # The `chartData` dict contains key-value pairs of data
-    chartData = OrderedDict()
-    chartData["Venezuela"] = 290
-    chartData["Saudi"] = 260
-    chartData["Canada"] = 180
-    chartData["Iran"] = 140
-    chartData["Russia"] = 115
-    chartData["UAE"] = 100
-    chartData["US"] = 30
-    chartData["China"] = 30
+    dataSource['data'] = []
+    # Iterate through the data in `Revenue` model and insert in to the `dataSource['data']` list.
+    for key in Statistic.objects.all():
+      data = {}
+    #   data['label'] = key.weight
+      data['value'] = key.weight
+      dataSource['data'].append(data)
 
-    dataSource["chart"] = chartConfig
-    dataSource["data"] = []
+    # Create an object for the Column 2D chart using the FusionCharts class constructor                      
+    column2D = FusionCharts("column2D", "ex1" , "600", "350", "chart-1", "json", dataSource)
+    return render(request, 't1health_app/weight.html', {'output': column2D.render()}) 
 
-    # Convert the data in the `chartData`array into a format that can be consumed by FusionCharts.
-    #The data for the chart should be in an array wherein each element of the array 
-    #is a JSON object# having the `label` and `value` as keys.
+def results_bmi_page(request):
+    # Chart data is passed to the `dataSource` parameter, as dict, in the form of key-value pairs.
+    dataSource = {}
+    dataSource['chart'] = { 
+        "caption": "BMI Statistics",
+            "xAxisName": "Day",
+            "yAxisName": "kg/m^2",
+            "theme": "zune"
+        }
 
-    #Iterate through the data in `chartData` and insert into the `dataSource['data']` list.
-    for key, value in chartData.items():
-        data = {}
-    data["label"] = key
-    data["value"] = value
-    dataSource["data"].append(data)
+    # The data for the chart should be in an array where each element of the array is a JSON object
+    # having the `label` and `value` as key value pair.
 
+    dataSource['data'] = []
+    # Iterate through the data in `Revenue` model and insert in to the `dataSource['data']` list.
+    for key in Statistic.objects.all():
+      data = {}
+    #   data['label'] = key.weight
+      data['value'] = key.bmi
+      dataSource['data'].append(data)
 
-    # Create an object for the column 2D chart using the FusionCharts class constructor
-    # The chart data is passed to the `dataSource` parameter.
-    column2D = FusionCharts("column2d", "myFirstChart", "600", "400", "myFirstchart-container", "json", dataSource)
+    # Create an object for the Column 2D chart using the FusionCharts class constructor                      
+    column2D = FusionCharts("column2D", "ex1" , "600", "350", "chart-2", "json", dataSource)
+    return render(request, 't1health_app/bmi.html', {'output': column2D.render()}) 
 
-    return render(request, 't1health_app/input_page.html', {
-    'output': column2D.render()
-})
+def results_nutrition_page(request):
+    # Chart data is passed to the `dataSource` parameter, as dict, in the form of key-value pairs.
+    dataSource = {}
+    dataSource['chart'] = { 
+        "caption": "Nutrition Statistics",
+            "xAxisName": "Day",
+            "yAxisName": "kcal",
+            "theme": "zune"
+        }
+
+    # The data for the chart should be in an array where each element of the array is a JSON object
+    # having the `label` and `value` as key value pair.
+
+    dataSource['data'] = []
+    # Iterate through the data in `Revenue` model and insert in to the `dataSource['data']` list.
+    for key in Statistic.objects.all():
+      data = {}
+    #   data['label'] = key.weight
+      data['value'] = key.nutrition
+      dataSource['data'].append(data)
+
+    # Create an object for the Column 2D chart using the FusionCharts class constructor                      
+    column2D = FusionCharts("column2D", "ex1" , "600", "350", "chart-3", "json", dataSource)
+    return render(request, 't1health_app/nutrition.html', {'output': column2D.render()}) 
+
+def results_exercise_page(request):
+    # Chart data is passed to the `dataSource` parameter, as dict, in the form of key-value pairs.
+    dataSource = {}
+    dataSource['chart'] = { 
+        "caption": "Exercise Statistics",
+            "xAxisName": "Day",
+            "yAxisName": "Minutes",
+            "theme": "zune"
+        }
+
+    # The data for the chart should be in an array where each element of the array is a JSON object
+    # having the `label` and `value` as key value pair.
+
+    dataSource['data'] = []
+    # Iterate through the data in `Revenue` model and insert in to the `dataSource['data']` list.
+    for key in Statistic.objects.all():
+      data = {}
+    #   data['label'] = key.weight
+      data['value'] = key.exercise
+      dataSource['data'].append(data)
+
+    # Create an object for the Column 2D chart using the FusionCharts class constructor                      
+    column2D = FusionCharts("column2D", "ex1" , "600", "350", "chart-4", "json", dataSource)
+    return render(request, 't1health_app/exercise.html', {'output': column2D.render()}) 
 
 favicon_view = RedirectView.as_view(url='/static/t1health_app/images/favicon.ico', permanent=True)
 
-def send_message(sid, token, name):
+def send_message_weight(sid, token, name):
+
     client = Client(sid, token)
     client.messages.create(
         to = +14162588389,
         from_ = "+16476967454",
-        body = "\nHey" + name + "\nRemember to enter your diet and measured weight for today!"
+        body = "\nHey, your latest weight total was " + str(name) + " kg.\nGood Work! Keep on exercising and improving overall health!"
     )
 
-def send_messagefunc(request):
+def send_messagefunc_weight(request):
     if request.method == 'GET':
         account_sid = "ACac4b4ad89b8e8c0c75cabce115e5e841"
         auth_token = "1c09620916081dd7ad9a3cd11d25a558"
         cur_time = str(datetime.now())
+        # dataSource['data'] = []
+        for key in Statistic.objects.all():
+            name = key.weight
 
         # Retrieve name and whether user updated from database here
         updated = False
-        name = username
+        # name = ""
             # if (not updated and (cur_time[12:14] == "22" or cur_time[12:14] == "24") and cur_time[15:17] == "00"):
-        send_message(account_sid, auth_token, name)
+        send_message_weight(account_sid, auth_token, name)
             # time.sleep(60)
         return render(request, 't1health_app/front_page.html')
     else:
-        return redirect('/')
+        return redirect('/front_page.html/')
+def send_message_exercise(sid, token, name):
+
+    client = Client(sid, token)
+    client.messages.create(
+        to = +14162588389,
+        from_ = "+16476967454",
+        body = "\nHey, your latest exercise total was " + str(name) + " min.\nGood Work! Keep on exercising and improving overall health!"
+    )
+
+def send_messagefunc_exercise(request):
+    if request.method == 'GET':
+        account_sid = "ACac4b4ad89b8e8c0c75cabce115e5e841"
+        auth_token = "1c09620916081dd7ad9a3cd11d25a558"
+        cur_time = str(datetime.now())
+        # dataSource['data'] = []
+        for key in Statistic.objects.all():
+            name = key.exercise
+
+        # Retrieve name and whether user updated from database here
+        updated = False
+        # name = ""
+            # if (not updated and (cur_time[12:14] == "22" or cur_time[12:14] == "24") and cur_time[15:17] == "00"):
+        send_message_exercise(account_sid, auth_token, name)
+            # time.sleep(60)
+        return render(request, 't1health_app/front_page.html')
+    else:
+        return redirect('/front_page.html/')
+
+def send_message_bmi(sid, token, name):
+
+    client = Client(sid, token)
+    client.messages.create(
+        to = +14162588389,
+        from_ = "+16476967454",
+        body = "\nHey, your latest bmi total was " + str(name) + " kg/m^2.\nGood Work! Keep on exercising and improving overall health!"
+    )
+
+def send_messagefunc_bmi(request):
+    if request.method == 'GET':
+        account_sid = "ACac4b4ad89b8e8c0c75cabce115e5e841"
+        auth_token = "1c09620916081dd7ad9a3cd11d25a558"
+        cur_time = str(datetime.now())
+        # dataSource['data'] = []
+        for key in Statistic.objects.all():
+            name = key.bmi
+
+        # Retrieve name and whether user updated from database here
+        updated = False
+        # name = ""
+            # if (not updated and (cur_time[12:14] == "22" or cur_time[12:14] == "24") and cur_time[15:17] == "00"):
+        send_message_bmi(account_sid, auth_token, name)
+            # time.sleep(60)
+        return render(request, 't1health_app/front_page.html')
+    else:
+        return redirect('/front_page.html/')
+
+def send_message_nutrition(sid, token, name):
+
+    client = Client(sid, token)
+    client.messages.create(
+        to = +14162588389,
+        from_ = "+16476967454",
+        body = "\nHey, your latest nutrition total was " + str(name) + " kcal.\nGood Work! Keep on exercising and improving overall health!"
+    )
+
+def send_messagefunc_nutrition(request):
+    if request.method == 'GET':
+        account_sid = "ACac4b4ad89b8e8c0c75cabce115e5e841"
+        auth_token = "1c09620916081dd7ad9a3cd11d25a558"
+        cur_time = str(datetime.now())
+        # dataSource['data'] = []
+        for key in Statistic.objects.all():
+            name = key.nutrition
+
+        # Retrieve name and whether user updated from database here
+        updated = False
+        # name = ""
+            # if (not updated and (cur_time[12:14] == "22" or cur_time[12:14] == "24") and cur_time[15:17] == "00"):
+        send_message_nutrition(account_sid, auth_token, name)
+            # time.sleep(60)
+        return render(request, 't1health_app/front_page.html')
+    else:
+        return redirect('/front_page.html/')
 
 # from flask import Flask, request
 # from twilio import twiml
@@ -123,10 +263,6 @@ def fitness_page(request):
 def nutrition_page(request):
     inputs = Statistic.objects.all()
     return render(request, 't1health_app/nutrition.html', {'inputs': inputs})
-
-def results_page(request):
-    inputs = Statistic.objects.all()
-    return render(request, 't1health_app/results.html', {'inputs': inputs})
 
 # def stats_page(request):
 #     inputs = Statistic.objects.all()
@@ -184,7 +320,7 @@ def statistic_new(request):
             statistic = form.save(commit=False)
             statistic.author = request.user
             statistic.save()
-            return redirect('results_page', pk=post.pk)
+            return redirect('results_weight_page', pk=post.pk)
     else:
         form = StatisticForm()
     return render(request, 't1health_app/input_page.html', {'form' : form})
@@ -197,7 +333,7 @@ def statisticinput(request):
             statistic = form.save(commit=False)
             statistic.author = request.user
             statistic.save()
-            return redirect('results_page')
+            return redirect('results_weight_page')
     else:
         form = StatisticForm()
     return render(request, 't1health_app/input_page.html', {'form' : form})

@@ -1,0 +1,47 @@
+<!DOCTYPE HTML>
+{% load static %}
+<html>
+	<head>
+		<title>Weight</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="{% static 't1health_app/assets/css/main.css' %}" />
+		<noscript><link rel="stylesheet" href="{% static 't1health_appassets/css/noscript.css' %}"/></noscript>
+		<script type="text/javascript" src="{% static "fusioncharts-suite-xt/js/fusioncharts.js" %}"></script>
+        <script type="text/javascript" src="{% static "fusioncharts-suite-xt/js/themes/fusioncharts.theme.fusion.js" %}"></script>
+		<link rel="icon" href="images/favicon.ico"/>
+	</head>
+	<body class="is-preload">
+			<header id="header">
+				<nav>
+					<ul>
+                            <li><a href="{% url 'front_page'%}">Home</a></li>
+                            <li><a href="{% url 'results_weight_page'%}" class="active">Weight</a></li>
+							<li><a href="{% url 'results_bmi_page'%}">BMI</a></li>
+							<li><a href="{% url 'results_nutrition_page'%}">Nutrition</a></li>
+							<li><a href="{% url 'results_exercise_page'%}">Exercise</a></li>
+					</ul>
+				</nav>
+			</header>
+			<div id="wrapper">
+					<section id="main" class="wrapper">
+						<div class="inner">
+							<h1 class="major" style="color: black">Weight Results</h1>
+                                <div id="chart-1">{{ output|safe }}</div>
+								<div class="actions">
+
+								<a href="{% url 'send_messagefunc_weight' %}" class="button scrolly">Send weight results to phone</a>
+							</div>
+						</div>
+					</section>
+			</div>
+
+			<script src="{% static 't1health_app/assets/js/jquery.min.js' %}"></script>
+			<script src="{% static 't1health_app/assets/js/jquery.scrollex.min.js' %}"></script>
+			<script src="{% static 't1health_app/assets/js/jquery.scrolly.min.js' %}"></script>
+			<script src="{% static 't1health_app/assets/js/browser.min.js' %}"></script>
+			<script src="{% static 't1health_app/assets/js/breakpoints.min.js' %}"></script>
+			<script src="{% static 't1health_app/assets/js/util.js' %}"></script>
+			<script src="{% static 't1health_app/assets/js/main.js' %}"></script>
+		</body>
+</html>

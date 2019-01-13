@@ -2,7 +2,7 @@
 {% load static %}
 <html>
 	<head>
-		<title>Nutrition</title>
+		<title>BMI</title>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 		<link rel="stylesheet" href="{% static 't1health_app/assets/css/main.css' %}" />
@@ -16,9 +16,9 @@
 				<nav>
 					<ul>
                             <li><a href="{% url 'front_page'%}">Home</a></li>
-                            <li><a href="{% url 'results_weight_page'%}">Weight</a></li>
-							<li><a href="{% url 'results_bmi_page'%}">BMI</a></li>
-							<li><a href="{% url 'results_nutrition_page'%}" class="active">Nutrition</a></li>
+                            <li><a href="{% url 'results_weight_page'%}" >Weight</a></li>
+							<li><a href="{% url 'results_bmi_page'%}" class="active">BMI</a></li>
+							<li><a href="{% url 'results_nutrition_page'%}">Nutrition</a></li>
 							<li><a href="{% url 'results_exercise_page'%}">Exercise</a></li>
 					</ul>
 				</nav>
@@ -26,10 +26,10 @@
 			<div id="wrapper">
 					<section id="main" class="wrapper">
 						<div class="inner">
-							<h1 class="major" style="color: black">Nutrition Results</h1>
-                                <div id="chart-3">{{ output|safe }}</div>
+							<h1 class="major" style="color: black">BMI Results</h1>
+                                <div id="chart-2">{{ output|safe }}</div>
 								<div class="actions">
-								<a href="{% url 'send_messagefunc_nutrition' %}" class="button scrolly">Send nutrition results to phone</a>
+								<a href="{% url 'send_messagefunc_bmi' %}" class="button scrolly">Send BMI results to phone</a>
 							</div>
 						</div>
 					</section>

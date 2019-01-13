@@ -42,45 +42,74 @@
 					</section>
 
 				<!-- One -->
-					<section id="one" class="fullscreen wrapper style2 spotlights">
-						 <section class="fullscreen">
-							<a href="#" class="image"><img src="{% static 't1health_app/images/healthy_food.jpg' %}" alt="" data-position="center center"/></a>
+					<section id="one" class="wrapper style2 spotlights">
+						<section>
+							<a href="#" class="image"><img src="{% static 't1health_app/images/pic01.jpg' %}" alt="" data-position="center center" /></a>
 							<div class="content">
 								<div class="inner">
-									<h2 style="color: rgb(195, 237, 132)">Our purpose</h2>
-									<p style="color: rgb(200, 200, 200)">We aspire to promote healthiness in all individuals' lives. Every single person in the world deserves to live life at its best, from the moment they wake up to the moment they pass away, old and fragile, in their hospital bed.</p>
-									<p style="color: rgb(200, 200, 200)">Our web app will allow you to track your healthiness and fitness level throughout your day. Enter your weight and track your calories, and analytical insight about your body will be provided through our algorithms.</p>
+									<h2>Sed ipsum dolor</h2>
+									<p>Phasellus convallis elit id ullamcorper pulvinar. Duis aliquam turpis mauris, eu ultricies erat malesuada quis. Aliquam dapibus.</p>
+									<ul class="actions">
+										<li><a href="generic.html" class="button">Learn more</a></li>
+									</ul>
+								</div>
+							</div>
+						</section>
+						<section>
+							<a href="#" class="image"><img src="{% static 't1health_app/images/pic02.jpg' %}" alt="" data-position="top center" /></a>
+							<div class="content">
+								<div class="inner">
+									<h2>Feugiat consequat</h2>
+									<p>Phasellus convallis elit id ullamcorper pulvinar. Duis aliquam turpis mauris, eu ultricies erat malesuada quis. Aliquam dapibus.</p>
+									<ul class="actions">
+										<li><a href="generic.html" class="button">Learn more</a></li>
+									</ul>
+								</div>
+							</div>
+						</section>
+						<section>
+							<a href="#" class="image"><img src="{% static 't1health_app/images/pic03.jpg' %}" alt="" data-position="25% 25%" /></a>
+							<div class="content">
+								<div class="inner">
+									<h2>Ultricies aliquam</h2>
+									<p>Phasellus convallis elit id ullamcorper pulvinar. Duis aliquam turpis mauris, eu ultricies erat malesuada quis. Aliquam dapibus.</p>
+									<ul class="actions">
+										<li><a href="generic.html" class="button">Learn more</a></li>
+									</ul>
 								</div>
 							</div>
 						</section>
 					</section>
 
 				<!-- Two -->
-					<section id="two" class="fullscreen wrapper style3 fade-up" style="background: rgb(45, 45, 45)">
+					<section id="two" class="wrapper style3 fade-up">
 						<div class="inner">
 							<h2>Fitness Plan</h2>
 							<div class="features">
 								<section>
-									<a href=#three>
+									<a href=stats.html>
 									<img src="{% static 't1health_app/images/1-YourStats.png' %}" alt="My Sample Image" width="200">
 									</a>
 								</section>
 								<section>
-									<a href=#three>
+									<a href=fitness.html>
 									<img src="{% static 't1health_app/images/1-Fitness.png' %}" alt="My Sample Image" width="200">
 									</a>
 								</section>
 								<section>
-									<a href=#three>
+									<a href=nutrition.html>
 									<img src="{% static 't1health_app/images/1-Nutrition.png' %}" alt="My Sample Image" width="200">
 									</a>
 								</section>
 								<section>
-									<a href=#three>
+									<a href=results.html>
 									<img src="{% static 't1health_app/images/1-Results.png' %}" alt="My Sample Image" width="200">
 									</a>
 								</section>
 							</div>
+							<ul class="actions">
+								<li><a href="generic.html" class="button">Learn more</a></li>
+							</ul>
 						</div>
 					</section>
 
@@ -89,47 +118,47 @@
 						<div class="inner">
 							<h2 style="color: black">Sign In</h2>
 							<div class="split style1">
-									<div id =login>
-											<section>
-												<form class = "form-horizontal" method="post" name="LoginForm">
-													{% csrf_token %}
-													{{ form.non_field_errors }}
-													{% if next %}
-														<input type="hidden" name="next" value="{{ next }}" />
-													{% endif %}	
-													<div class="fields">
-														<div class="field half">
-															<label class="control-label" style="color: black" for="username">Username</label>
-															<input type="text" name="username" id="username" />
-														</div>
-														</div>
-														<div class="field half">
-																<div class="control-group">
-															<label class="control-label" style="color: black" for="password">Password</label>
-															<input type="password" name="password" id="password" />
-														</div>
-													</div>
-													<ul class="actions">
-														<div class="control-group">
-															<div class="controls"><br>
-																<button type="submit" class="btn">Login</button>		
-															</div>
-														</div>
-													</ul>
-												</form>
-											</section>
+								<div id =login>
+								<section>
+									<form class = "form-horizontal" method="post" name="LoginForm">
+										{% csrf_token %}
+										{{ form.non_field_errors }}
+										{% if next %}
+											<input type="hidden" name="next" value="{{ next }}" />
+										{% endif %}	
+										<div class="fields">
+											<div class="field half">
+												<label class="control-label" style="color: black" for="username">Username</label>
+												<input type="text" name="username" id="username" />
 											</div>
-											<section>
+											</div>
+											<div class="field half">
+													<div class="control-group">
+												<label class="control-label" style="color: black" for="password">Password</label>
+												<input type="password" name="password" id="password" />
+											</div>
+										</div>
+										<ul class="actions">
+											<div class="control-group">
+												<div class="controls"><br>
+													<button type="submit" class="btn">Login</button>		
+												</div>
+											</div>
+										</ul>
+									</form>
+								</section>
+								</div>
+								<section>
 									<ul class="contact">
 										<li>
 											<h3 style="color: black">Address</h3>
-											<span>1 TierHealth Ave.<br />
-											Waterloo, ON <br />
+											<span>12345 Somewhere Road #654<br />
+											Waterloo, ON 00000-0000<br />
 											Canada</span>
 										</li>
 										<li>
 											<h3 style="color: black">Email</h3>
-											<a href="#">tier1Health@health.ca</a>
+											<a href="#">user@untitled.tld</a>
 										</li>
 										<li>
 											<h3 style="color: black">Phone</h3>
@@ -161,7 +190,6 @@
 		<script src="{% static 't1health_app/assets/js/breakpoints.min.js' %}"></script>
 		<script src="{% static 't1health_app/assets/js/util.js' %}"></script>
 		<script src="{% static 't1health_app/assets/js/main.js' %}"></script>
-
 
 	</body>
 </html>
