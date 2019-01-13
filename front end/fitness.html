@@ -1,12 +1,32 @@
 <!DOCTYPE HTML>
 <html>
 	<head>
-		<title>Fitness</title>
+		<title>Your Fitness</title>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 		<link rel="stylesheet" href="assets/css/main.css" />
 		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
 		<link rel="icon" href="images/favicon.ico"/>
+		<style type = text/css>
+			h1 {
+				color:black;
+				margin:0;
+				border:0;
+				padding:0;
+			}
+			p {
+				font-weight:bold;
+				font-size:25px;
+				margin-left:150px;
+			}
+			.f {
+				margin-left:150px;
+				width:280px;
+				display:inline-block;
+				margin-bottom:50px;
+			}
+
+		</style>
 	</head>
 	<body class="is-preload">
 		<!-- Header -->
@@ -29,8 +49,18 @@
 				<!-- Main -->
 					<section id="main" class="wrapper">
 						<div class="inner">
-							<h1 class="major">Fitness/h1>
+							<h1 class="major">YOUR FITNESS</h1>
 						</div>
+						<p>Enter daily:</p>
+						<form method="post" action="#">
+							<div class="f">
+									<label style="color: black" for="weight">Weight (kg):</label>
+									<input type="text" name="weight" id="Weight" />
+							</div>
+							<ul class="actions" style="margin-bottom:50px">
+								<li><a href="" class="button submit" style="margin-left:150px">Calculate Fitness</a></li>
+							</ul>
+						</form>
 					</section>
 
 			</div>
