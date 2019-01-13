@@ -12,7 +12,11 @@ import os
 import time
 from datetime import datetime
 from twilio.rest import Client
+from django.views.generic.base import RedirectView
+
 # os.environ["MY_PHONE_NUMBER"]
+
+favicon_view = RedirectView.as_view(url='/static/t1health_app/images/favicon.ico', permanent=True)
 
 def send_message(sid, token, name):
     client = Client(sid, token)
@@ -22,7 +26,7 @@ def send_message(sid, token, name):
         body = "\nHey" + name + "\nRemember to enter your diet and measured weight for today!"
     )
 
-def send_messagefunc(request, username):
+def send_messagefunc(request):
     if request.method == 'GET':
         account_sid = "ACac4b4ad89b8e8c0c75cabce115e5e841"
         auth_token = "1c09620916081dd7ad9a3cd11d25a558"
@@ -37,6 +41,7 @@ def send_messagefunc(request, username):
         return render(request, 't1health_app/front_page.html')
     else:
         return redirect('/')
+
 # from flask import Flask, request
 # from twilio import twiml
 
