@@ -91,22 +91,21 @@
 							<h2>Fitness Plan</h2>
 							<div class="features">
 								<section>
-									<a href=stats.html>
 									<img src="{% static 't1health_app/images/1-YourStats.png' %}" alt="My Sample Image" width="200">
 									</a>
 								</section>
 								<section>
-									<a href=fitness.html>
+									<a href="{% url 'fitness_page' %}">
 									<img src="{% static 't1health_app/images/1-Fitness.png' %}" alt="My Sample Image" width="200">
 									</a>
 								</section>
 								<section>
-									<a href=nutrition.html>
+									<a href="{% url 'nutrition_page' %}">
 									<img src="{% static 't1health_app/images/1-Nutrition.png' %}" alt="My Sample Image" width="200">
 									</a>
 								</section>
 								<section>
-									<a href=results.html>
+									<a href="{% url 'results_page' %}">
 									<img src="{% static 't1health_app/images/1-Results.png' %}" alt="My Sample Image" width="200">
 									</a>
 								</section>

@@ -1,24 +1,24 @@
 <!DOCTYPE HTML>
+{% load static %}
 <html>
 	<head>
 		<title>Results</title>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-		<link rel="stylesheet" href="assets/css/main.css" />
-		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+		<link rel="stylesheet" href="{% static 't1health_app/assets/css/main.css' %}" />
+		<noscript><link rel="stylesheet" href="{% static 't1health_appassets/css/noscript.css' %}"/></noscript>
 	</head>
 	<body class="is-preload">
 		<!-- Header -->
 			<header id="header">
 				<nav>
 					<ul>
-						<li><a href="index.html">Home</a></li>
-						<!-- stats fitness nutrition results-->
-						<li><a href="stats.html">Stats</a></li>
-						<li><a href="fitness.html">Fitness</a></li>
-						<li><a href="nutrition.html">Nutrition</a></li>
-						<li><a href="results.html" class="active">Results</a></li>
-					</ul>
+							<li><a href="{% url 'front_page'%}">Home</a></li>
+							<!-- stats fitness nutrition results-->
+							<li><a href="{% url 'fitness_page'%}" class="active">Fitness</a></li>
+							<li><a href="{% url 'nutrition_page'%}">Nutrition</a></li>
+							<li><a href="{% url 'results_page'%}">Results</a></li>
+						</ul>
 				</nav>
 			</header>
 
@@ -35,13 +35,13 @@
 			</div>
 
 		<!-- Scripts -->
-			<script src="assets/js/jquery.min.js"></script>
-			<script src="assets/js/jquery.scrollex.min.js"></script>
-			<script src="assets/js/jquery.scrolly.min.js"></script>
-			<script src="assets/js/browser.min.js"></script>
-			<script src="assets/js/breakpoints.min.js"></script>
-			<script src="assets/js/util.js"></script>
-			<script src="assets/js/main.js"></script>
+		<script src="{% static 't1health_app/assets/js/jquery.min.js' %}"></script>
+		<script src="{% static 't1health_app/assets/js/jquery.scrollex.min.js' %}"></script>
+		<script src="{% static 't1health_app/assets/js/jquery.scrolly.min.js' %}"></script>
+		<script src="{% static 't1health_app/assets/js/browser.min.js' %}"></script>
+		<script src="{% static 't1health_app/assets/js/breakpoints.min.js' %}"></script>
+		<script src="{% static 't1health_app/assets/js/util.js' %}"></script>
+		<script src="{% static 't1health_app/assets/js/main.js' %}"></script>
 
 	</body>
 </html>

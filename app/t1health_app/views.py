@@ -13,8 +13,57 @@ import time
 from datetime import datetime
 from twilio.rest import Client
 from django.views.generic.base import RedirectView
+from .fusioncharts import FusionCharts
+from collections import OrderedDict
 
 # os.environ["MY_PHONE_NUMBER"]
+def myFirstChart(request):
+
+    #Chart data is passed to the `dataSource` parameter, like a dictionary in the form of key-value pairs.
+    dataSource = OrderedDict()
+
+    # The `chartConfig` dict contains key-value pairs of data for chart attribute
+    chartConfig = OrderedDict()
+    chartConfig["caption"] = "Countries With Most Oil Reserves [2017-18]"
+    chartConfig["subCaption"] = "In MMbbl = One Million barrels"
+    chartConfig["xAxisName"] = "Country"
+    chartConfig["yAxisName"] = "Reserves (MMbbl)"
+    chartConfig["numberSuffix"] = "K"
+    chartConfig["theme"] = "fusion"
+
+    # The `chartData` dict contains key-value pairs of data
+    chartData = OrderedDict()
+    chartData["Venezuela"] = 290
+    chartData["Saudi"] = 260
+    chartData["Canada"] = 180
+    chartData["Iran"] = 140
+    chartData["Russia"] = 115
+    chartData["UAE"] = 100
+    chartData["US"] = 30
+    chartData["China"] = 30
+
+    dataSource["chart"] = chartConfig
+    dataSource["data"] = []
+
+    # Convert the data in the `chartData`array into a format that can be consumed by FusionCharts.
+    #The data for the chart should be in an array wherein each element of the array 
+    #is a JSON object# having the `label` and `value` as keys.
+
+    #Iterate through the data in `chartData` and insert into the `dataSource['data']` list.
+    for key, value in chartData.items():
+        data = {}
+    data["label"] = key
+    data["value"] = value
+    dataSource["data"].append(data)
+
+
+    # Create an object for the column 2D chart using the FusionCharts class constructor
+    # The chart data is passed to the `dataSource` parameter.
+    column2D = FusionCharts("column2d", "myFirstChart", "600", "400", "myFirstchart-container", "json", dataSource)
+
+    return render(request, 't1health_app/input_page.html', {
+    'output': column2D.render()
+})
 
 favicon_view = RedirectView.as_view(url='/static/t1health_app/images/favicon.ico', permanent=True)
 
@@ -64,6 +113,22 @@ def send_messagefunc(request):
 def input_page(request):
     inputs = Statistic.objects.all()
     return render(request, 't1health_app/input_page.html', {'inputs': inputs})
+
+def fitness_page(request):
+    inputs = Statistic.objects.all()
+    return render(request, 't1health_app/fitness.html', {'inputs': inputs})
+
+def nutrition_page(request):
+    inputs = Statistic.objects.all()
+    return render(request, 't1health_app/nutrition.html', {'inputs': inputs})
+
+def results_page(request):
+    inputs = Statistic.objects.all()
+    return render(request, 't1health_app/results.html', {'inputs': inputs})
+
+# def stats_page(request):
+#     inputs = Statistic.objects.all()
+#     return render(request, 't1health_app/stats.html', {'inputs': inputs})
 
 # @login_required(login_url='/login_user/')
 def front_page(request):

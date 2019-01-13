@@ -7,7 +7,9 @@
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 		<link rel="stylesheet" href="{% static 't1health_app/assets/css/main.css' %}" />
-		<noscript><link rel="stylesheet" href="{% static 't1health_appassets/css/noscript.css' %}"/></noscript>
+        <script type="text/javascript" src="{% static "fusioncharts-suite-xt/js/fusioncharts.js" %}"></script>
+        <script type="text/javascript" src="{% static "fusioncharts-suite-xt/js/themes/fusioncharts.theme.fusion.js" %}"></script>
+            <noscript><link rel="stylesheet" href="{% static 't1health_appassets/css/noscript.css' %}"/></noscript>
 	</head>
 	<body class="is-preload">
 
@@ -16,7 +18,7 @@
 				<div class="inner">
 					<nav>
 						<ul>
-                            <p style = "color: black">Hi {{ user.get_username }}</p>
+                            <p style = "color: white">Hi {{ user.get_username }}</p>
 							<li><a href="#intro">WELCOME</a></li>
 							<li><a href="#one">ABOUT US</a></li>
 							<li><a href="#two">FITNESS PLAN</a></li>
@@ -32,16 +34,8 @@
 				<!-- Top Page -->
 					<section id="intro" class="wrapper style1 fullscreen fade-up">
 						<div class="inner">
-							<!-- Image -->
-							<!-- <a href=index.html>
-								<img src="{% static 't1health_app/images/logo_transparent_no_text.png' %}" width="300">
-                            </a>
-                            <h1 style="color: black"> Hi {{ user.get_username }}</h1>
-                            <h1 style="color: black">Welcome to Tier1Health.</h1>
-							<ul class="actions">
-								<li><a href="{% url 'input_page' %}" class="button scrolly">Input Your Data</a></li>
-							</ul> -->
-						</div>
+                                <div id="myFirstchart-container">{{ output|safe }}</div>
+                        </div>
 					</section>
 
 				<!-- One -->
@@ -85,27 +79,26 @@
 					</section> -->
 
 				<!-- Two -->
-					<section id="two" class="wrapper style3 fade-up">
+                <section id="two" class="wrapper style3 fade-up">
 						<div class="inner">
 							<h2>Fitness Plan</h2>
 							<div class="features">
 								<section>
-									<a href=stats.html>
 									<img src="{% static 't1health_app/images/1-YourStats.png' %}" alt="My Sample Image" width="200">
 									</a>
 								</section>
 								<section>
-									<a href=fitness.html>
+									<a href="{% url 'fitness_page' %}">
 									<img src="{% static 't1health_app/images/1-Fitness.png' %}" alt="My Sample Image" width="200">
 									</a>
 								</section>
 								<section>
-									<a href=nutrition.html>
+									<a href="{% url 'nutrition_page' %}">
 									<img src="{% static 't1health_app/images/1-Nutrition.png' %}" alt="My Sample Image" width="200">
 									</a>
 								</section>
 								<section>
-									<a href=results.html>
+									<a href="{% url 'results_page' %}">
 									<img src="{% static 't1health_app/images/1-Results.png' %}" alt="My Sample Image" width="200">
 									</a>
 								</section>
@@ -199,7 +192,6 @@
 <!-- <body>
     {% for input in inputs %}
     <div>
-        <p>{{input.weight|add:input.height}}</p>
         <p>{{input.height}}</p>
     </div>
     {% endfor %}
