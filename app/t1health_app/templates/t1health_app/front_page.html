@@ -9,5 +9,15 @@
 <body>
     <b>Hi {{ user.get_username }}!</b>
     <a href="{% url 'logout'%}">Logout</a>
+
+    <form action="your_view_url" method="post">
+        {% csrf_token %}
+        {{ form.as_table }}
+        <input type="text" name="info_name" value="info_value"><br>
+        <input type="submit" value="Submit">
+    </form>
+    <p> Post Data: {{ info }} </p>
+    <p> Result: {{ output }} </p>
+    
 </body>
 </html>
