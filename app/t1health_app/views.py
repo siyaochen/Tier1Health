@@ -1,5 +1,5 @@
 from django.http import *
-from django.shortcuts import render, HttpResponseRedirect, render_to_response, redirect
+from django.shortcuts import render, HttpResponseRedirect, render_to_response, redirect, get_object_or_404
 from django.utils import timezone
 from .models import *
 from django.contrib.auth.forms import UserCreationForm
@@ -15,6 +15,8 @@ from twilio.rest import Client
 from django.views.generic.base import RedirectView
 from .fusioncharts import FusionCharts
 from collections import OrderedDict
+from .forms import StatisticForm
+
 
 # os.environ["MY_PHONE_NUMBER"]
 def myFirstChart(request):
@@ -110,9 +112,9 @@ def send_messagefunc(request):
 #     return render(request, 't1health_app/front_page.html', {'inputs': inputs})
 
 # @login_required(login_url='/login_user/')
-def input_page(request):
-    inputs = Statistic.objects.all()
-    return render(request, 't1health_app/input_page.html', {'inputs': inputs})
+# def input_page(request):
+#     inputs = Statistic.objects.all()
+#     return render(request, 't1health_app/input_page.html', {'inputs': inputs})
 
 def fitness_page(request):
     inputs = Statistic.objects.all()
@@ -173,3 +175,32 @@ def your_view_name(request):
 #                 login(request, user)
 #                 return HttpResponseRedirect('/')
 #     return render(request, 't1health_app/login.html');
+
+def statistic_new(request):
+    # statistic = get_object_or_404(Statistic)
+    if request.method == "POST":
+        form = StatisticForm(request.POST)
+        if form.is_valid():
+            statistic = form.save(commit=False)
+            statistic.author = request.user
+            statistic.save()
+            return redirect('results_page', pk=post.pk)
+    else:
+        form = StatisticForm()
+    return render(request, 't1health_app/input_page.html', {'form' : form})
+    # return render(request, 't1health_app/input_page.html', {'form' : form})
+
+def statisticinput(request):
+    if request.method == "POST":
+        form = StatisticForm(request.POST)
+        if form.is_valid():
+            statistic = form.save(commit=False)
+            statistic.author = request.user
+            statistic.save()
+            return redirect('results_page')
+    else:
+        form = StatisticForm()
+    return render(request, 't1health_app/input_page.html', {'form' : form})
+
+    # form = StatisticForm()
+    # return render(request, 't1health_app/input_page.html', {'form': form})

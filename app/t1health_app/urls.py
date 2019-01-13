@@ -5,7 +5,8 @@ from t1health_app.views import favicon_view
 urlpatterns = [
     path('', views.front_page, name='front_page'),
     path('accounts/', include('django.contrib.auth.urls')),
-    path('input/', views.input_page, name='input_page'),
+    path('input/', views.statisticinput, name='statisticinput'),
+    path('inputed/', views.statistic_new, name='statistic_new'),
     path('input2/', views.myFirstChart, name='myFirstChart'),
     path('send_message/', views.send_messagefunc, name='send_messagefunc'),
     path('favicon.ico', favicon_view),

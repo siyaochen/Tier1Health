@@ -19,8 +19,8 @@
 					<nav>
 						<ul>
                             <p style = "color: white">Hi {{ user.get_username }}</p>
-							<li><a href="#intro">WELCOME</a></li>
-							<li><a href="#one">ABOUT US</a></li>
+							<li><a href="#intro">DATA INPUT</a></li>
+							<!-- <li><a href="#one">ABOUT US</a></li> -->
 							<li><a href="#two">FITNESS PLAN</a></li>
 							<li><a href="{% url 'logout'%}">LOGOUT</a>
                             </li>
@@ -32,9 +32,22 @@
 		<!-- Wrapper -->
 			<div id="wrapper">
 				<!-- Top Page -->
-					<section id="intro" class="wrapper style1 fullscreen fade-up">
-						<div class="inner">
-                                <div id="myFirstchart-container">{{ output|safe }}</div>
+					<section id="one" class="wrapper style2 fullscreen fade-up">
+						<div class="statistic-class">
+                                <h2 class="statistic-class">Input Your Data!</h2>
+                                <!-- <ul class="statistic-class"> -->
+
+                                        <!-- <li id="" class="contact">{{ form.email }}</li>
+                                        <li id="message" class="contact">{{ form.message }}</li> -->
+                                    <!-- </ul> -->
+                                    <!-- <a href="{% url 'statisticinput' %}" class="top-menu"><span class="glyphicon glyphicon-plus"></span> what</a> -->
+
+                                <form method="POST" class="statistic-class">
+                                    {% csrf_token %}
+                                    {{ form.as_p }}
+                                    <button type="submit" class="save btn btn-default">Save</button>
+                                </form>
+                                <!-- <div id="myFirstchart-container">{{ output|safe }}</div> -->
                         </div>
 					</section>
 
