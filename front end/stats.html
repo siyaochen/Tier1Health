@@ -1,143 +1,104 @@
 <!DOCTYPE HTML>
 <html>
 	<head>
-		<title>Tier1Health</title>
-		<link rel="icon" href="images/favicon.ico"/>
+		<title>Your Stats</title>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 		<link rel="stylesheet" href="assets/css/main.css" />
 		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+                
+                <style>
+                    div.a {                      
+                        width: 300px;
+                        border: 10px white;
+                        padding-left: 50px;
+                        margin-left: 150px;
+                        display:inline-block;
+                    }
+                    div.b {
+                        text-indent: 200px;
+                    }
+                    div.c {
+                        width: 300px;
+                        border: 10px;
+                        padding-left: 50px;
+                        margin-left: 135px;
+                        display:inline-block;
+                    }
+                    
+                    .wrapButton{
+                        padding-top: 100px;
+                        text-align: center;
+                    }
+ 
+                </style>
 	</head>
 	<body class="is-preload">
-
-		<!-- Sidebar -->
-			<section id="sidebar">
-				<div class="inner">
-					<nav>
-						<ul>
-							<li><a href="#intro">WELCOME</a></li>
-							<li><a href="#one">ABOUT US</a></li>
-							<li><a href="#two">FITNESS PLAN</a></li>
-							<li><a href="#three">SIGN IN</a></li>
-						</ul>
-					</nav>
-				</div>
-			</section>
+		<!-- Header -->
+			<header id="header">
+				<nav>
+					<ul>
+						<li><a href="index.html">Home</a></li>
+						<!-- stats fitness nutrition results-->
+						<li><a href="stats.html" class="active">Stats</a></li>
+						<li><a href="fitness.html">Fitness</a></li>
+						<li><a href="nutrition.html">Nutrition</a></li>
+						<li><a href="results.html">Results</a></li>
+					</ul>
+				</nav>
+			</header>
 
 		<!-- Wrapper -->
 			<div id="wrapper">
-				<!-- Top Page -->
-					<section id="intro" class="wrapper style1 fullscreen fade-up">
+
+				<!-- Main -->
+					<section id="main" class="wrapper">
 						<div class="inner">
-							<!-- Image -->
-							<a href=index.html>
-								<img src="images/logo_transparent_no_text.png" width="300">
-							</a>
-							<h1 style="color: black">Welcome to Tier1Health.</h1>
-							<ul class="actions">
-								<li><a href="#three" class="button scrolly">Sign in</a></li>
-							</ul>
+							<h1 class="major" style="color:black">Your Stats</h1>	
 						</div>
-					</section>
+                                                    <div class = "b">
+                                                        <p> Enter once and re-enter when your stats change: </p>
+                                                    </div>
+                                                    <div class = "a">
+                                                            
+                                                            <img src = "images/2-Gender.png"  alt = "My Sample Image" width = "250" height = "150">
+                                                            <label style="color:black"> GENDER: </label>
+                                                            <select>
+                                                                <option value ="male">Male</option>
+                                                                <option value ="female">Female</option>
+                                                                <option value ="other">Other</option>
+                                                            </select> 
+                                                       
+                                                    </div>            
+                                                    <div class = "c">           
+                                                         
+                                                            
+                                                            <img src = "images/2-Age.png" alt = "My Sample Image" width = "250" height = "200">
+                                                            <label style="color:black"> AGE: </label>
+                                                            <input type = "text"> 
+                                                    </div>
+                                                    <div class = "c">
+                                                      
+                                                            
+                                                            <img src = "images/2-Height.png" alt = "My Sample Image" width = "150" height = "200">
+                                                            <label style="color:black"> HEIGHT: </label>
+                                                            <input type = "text"> 
+                                                    </div>
 
-				<!-- One -->
-					<section id="one" class="fullscreen wrapper style2 spotlights">
-						 <section class="fullscreen">
-							<a href="#" class="image"><img src="images/healthy_food.jpg" alt="" data-position="center center"/></a>
-							<div class="content">
-								<div class="inner">
-									<h2 style="color: rgb(195, 237, 132)">Our purpose</h2>
-									<p style="color: rgb(200, 200, 200)">We aspire to promote healthiness in all individuals' lives. Every single person in the world deserves to live life at its best, from the moment they wake up to the moment they pass away, old and fragile, in their hospital bed.</p>
-									<p style="color: rgb(200, 200, 200)">Our web app will allow you to track your healthiness and fitness level throughout your day. Enter your weight and track your calories, and analytical insight about your body will be provided through our algorithms.</p>
-								</div>
-							</div>
-						</section>
-					</section>
+                                                   <div class ="wrapButton">
+                                                        <u1>
+                                                            <li> <a href=fitness.html class = "button">Save</a></li>
+                                                        </u1>
+                                                   </div>
+                                        </section>
+                        </div>  
 
-				<!-- Two -->
-					<section id="two" class="fullscreen wrapper style3 fade-up" style="background: rgb(45, 45, 45)">
-						<div class="inner">
-							<h2>Fitness Plan</h2>
-							<div class="features">
-								<section>
-									<a href=stats.html>
-									<img src="images/1-YourStats.png" alt="My Sample Image" width="200">
-									</a>
-								</section>
-								<section>
-									<a href=fitness.html>
-									<img src="images/1-Fitness.png" alt="My Sample Image" width="200">
-									</a>
-								</section>
-								<section>
-									<a href=nutrition.html>
-									<img src="images/1-Nutrition.png" alt="My Sample Image" width="200">
-									</a>
-								</section>
-								<section>
-									<a href=results.html>
-									<img src="images/1-Results.png" alt="My Sample Image" width="200">
-									</a>
-								</section>
-							</div>
-						</div>
-					</section>
-
-				<!-- Three -->
-					<section id="three" class="wrapper fullscreen style1 fade-up">
-						<div class="inner">
-							<h2 style="color: black">Sign In</h2>
-							<div class="split style1">
-								<section>
-									<form method="post" action="#">
-										<div class="fields">
-											<div class="field half">
-												<label style="color: black" for="username">Username</label>
-												<input type="text" name="username" id="username" placeholder="JohnSmith"/>
-											</div>
-											<div class="field half">
-												<label style="color: black" for="password">Password</label>
-												<input type="password" name="password" id="password" />
-											</div>
-										</div>
-										<ul class="actions">
-											<li><a href="" class="button submit">Submit</a></li>
-										</ul>
-									</form>
-								</section>
-								<section>
-									<ul class="contact">
-										<li>
-											<h3 style="color: black">Address</h3>
-											<span>1 TierHealth Ave.<br />
-											Waterloo, ON <br />
-											Canada</span>
-										</li>
-										<li>
-											<h3 style="color: black">Email</h3>
-											<a href="#">tier1Health@health.ca</a>
-										</li>
-										<li>
-											<h3 style="color: black">Phone</h3>
-											<span>(000) 000-0000</span>
-										</li>
-										<li>
-											<h3 style="color: black">Social</h3>
-											<ul class="icons">
-												<li><a href="#" class="fa-twitter"><span class="label">Twitter</span></a></li>
-												<li><a href="#" class="fa-facebook"><span class="label">Facebook</span></a></li>
-												<li><a href="#" class="fa-github"><span class="label">GitHub</span></a></li>
-												<li><a href="#" class="fa-instagram"><span class="label">Instagram</span></a></li>
-												<li><a href="#" class="fa-linkedin"><span class="label">LinkedIn</span></a></li>
-											</ul>
-										</li>
-									</ul>
-								</section>
-							</div>
-						</div>
-					</section>
-
-			</div>
+		<!-- Footer -->
+			<footer id="footer" class="wrapper alt">
+				<div class="inner">
+					
+				</div>
+			</footer>
 
 		<!-- Scripts -->
 			<script src="assets/js/jquery.min.js"></script>
@@ -147,6 +108,5 @@
 			<script src="assets/js/breakpoints.min.js"></script>
 			<script src="assets/js/util.js"></script>
 			<script src="assets/js/main.js"></script>
-
 	</body>
 </html>
