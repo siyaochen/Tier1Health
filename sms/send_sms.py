@@ -21,7 +21,7 @@ while (True):
     updated = False
     name = ""
 
-    if (not updated and cur_time[12:14] == "22" and cur_time[15:17] == "24"):
+    if (not updated and (cur_time[12:14] == "22" or cur_time[12:14] == "24") and cur_time[15:17] == "00"):
         send_message(account_sid, auth_token, name)
 
     time.sleep(60)
