@@ -23,7 +23,7 @@ from .forms import StatisticForm
 def results_weight_page(request):
     # Chart data is passed to the `dataSource` parameter, as dict, in the form of key-value pairs.
     dataSource = {}
-    dataSource['chart'] = { 
+    dataSource['chart'] = {
         "caption": "Weight Statistics",
             "xAxisName": "Day",
             "yAxisName": "Kg",
@@ -41,14 +41,14 @@ def results_weight_page(request):
       data['value'] = key.weight
       dataSource['data'].append(data)
 
-    # Create an object for the Column 2D chart using the FusionCharts class constructor                      
+    # Create an object for the Column 2D chart using the FusionCharts class constructor
     column2D = FusionCharts("column2D", "ex1" , "600", "350", "chart-1", "json", dataSource)
-    return render(request, 't1health_app/weight.html', {'output': column2D.render()}) 
+    return render(request, 't1health_app/weight.html', {'output': column2D.render()})
 
 def results_bmi_page(request):
     # Chart data is passed to the `dataSource` parameter, as dict, in the form of key-value pairs.
     dataSource = {}
-    dataSource['chart'] = { 
+    dataSource['chart'] = {
         "caption": "BMI Statistics",
             "xAxisName": "Day",
             "yAxisName": "kg/m^2",
@@ -66,14 +66,14 @@ def results_bmi_page(request):
       data['value'] = key.bmi
       dataSource['data'].append(data)
 
-    # Create an object for the Column 2D chart using the FusionCharts class constructor                      
+    # Create an object for the Column 2D chart using the FusionCharts class constructor
     column2D = FusionCharts("column2D", "ex1" , "600", "350", "chart-2", "json", dataSource)
-    return render(request, 't1health_app/bmi.html', {'output': column2D.render()}) 
+    return render(request, 't1health_app/bmi.html', {'output': column2D.render()})
 
 def results_nutrition_page(request):
     # Chart data is passed to the `dataSource` parameter, as dict, in the form of key-value pairs.
     dataSource = {}
-    dataSource['chart'] = { 
+    dataSource['chart'] = {
         "caption": "Nutrition Statistics",
             "xAxisName": "Day",
             "yAxisName": "kcal",
@@ -91,14 +91,14 @@ def results_nutrition_page(request):
       data['value'] = key.nutrition
       dataSource['data'].append(data)
 
-    # Create an object for the Column 2D chart using the FusionCharts class constructor                      
+    # Create an object for the Column 2D chart using the FusionCharts class constructor
     column2D = FusionCharts("column2D", "ex1" , "600", "350", "chart-3", "json", dataSource)
-    return render(request, 't1health_app/nutrition.html', {'output': column2D.render()}) 
+    return render(request, 't1health_app/nutrition.html', {'output': column2D.render()})
 
 def results_exercise_page(request):
     # Chart data is passed to the `dataSource` parameter, as dict, in the form of key-value pairs.
     dataSource = {}
-    dataSource['chart'] = { 
+    dataSource['chart'] = {
         "caption": "Exercise Statistics",
             "xAxisName": "Day",
             "yAxisName": "Minutes",
@@ -116,9 +116,9 @@ def results_exercise_page(request):
       data['value'] = key.exercise
       dataSource['data'].append(data)
 
-    # Create an object for the Column 2D chart using the FusionCharts class constructor                      
+    # Create an object for the Column 2D chart using the FusionCharts class constructor
     column2D = FusionCharts("column2D", "ex1" , "600", "350", "chart-4", "json", dataSource)
-    return render(request, 't1health_app/exercise.html', {'output': column2D.render()}) 
+    return render(request, 't1health_app/exercise.html', {'output': column2D.render()})
 
 favicon_view = RedirectView.as_view(url='/static/t1health_app/images/favicon.ico', permanent=True)
 
@@ -126,15 +126,15 @@ def send_message_weight(sid, token, name):
 
     client = Client(sid, token)
     client.messages.create(
-        to = +14162588389,
+        to = environ.os["MY_PHONE_NUMBER"],
         from_ = "+16476967454",
         body = "\nHey, your latest weight total was " + str(name) + " kg.\nGood Work! Keep on exercising and improving overall health!"
     )
 
 def send_messagefunc_weight(request):
     if request.method == 'GET':
-        account_sid = "ACac4b4ad89b8e8c0c75cabce115e5e841"
-        auth_token = "1c09620916081dd7ad9a3cd11d25a558"
+        account_sid = environ.os["TWILIO_ACCOUNT_SID"]
+        auth_token = environ.os["TWILIO_AUTH_TOKEN"]
         cur_time = str(datetime.now())
         # dataSource['data'] = []
         for key in Statistic.objects.all():
@@ -153,15 +153,15 @@ def send_message_exercise(sid, token, name):
 
     client = Client(sid, token)
     client.messages.create(
-        to = +14162588389,
+        to = environ.os["MY_PHONE_NUMBER"],
         from_ = "+16476967454",
         body = "\nHey, your latest exercise total was " + str(name) + " min.\nGood Work! Keep on exercising and improving overall health!"
     )
 
 def send_messagefunc_exercise(request):
     if request.method == 'GET':
-        account_sid = "ACac4b4ad89b8e8c0c75cabce115e5e841"
-        auth_token = "1c09620916081dd7ad9a3cd11d25a558"
+        account_sid = environ.os["TWILIO_ACCOUNT_SID"]
+        auth_token = environ.os["TWILIO_AUTH_TOKEN"]
         cur_time = str(datetime.now())
         # dataSource['data'] = []
         for key in Statistic.objects.all():
@@ -181,15 +181,15 @@ def send_message_bmi(sid, token, name):
 
     client = Client(sid, token)
     client.messages.create(
-        to = +14162588389,
+        to = environ.os["MY_PHONE_NUMBER"],
         from_ = "+16476967454",
         body = "\nHey, your latest bmi total was " + str(name) + " kg/m^2.\nGood Work! Keep on exercising and improving overall health!"
     )
 
 def send_messagefunc_bmi(request):
     if request.method == 'GET':
-        account_sid = "ACac4b4ad89b8e8c0c75cabce115e5e841"
-        auth_token = "1c09620916081dd7ad9a3cd11d25a558"
+        account_sid = environ.os["TWILIO_ACCOUNT_SID"]
+        auth_token = environ.os["TWILIO_AUTH_TOKEN"]
         cur_time = str(datetime.now())
         # dataSource['data'] = []
         for key in Statistic.objects.all():
@@ -209,15 +209,15 @@ def send_message_nutrition(sid, token, name):
 
     client = Client(sid, token)
     client.messages.create(
-        to = +14162588389,
+        to = environ.os["MY_PHONE_NUMBER"],
         from_ = "+16476967454",
         body = "\nHey, your latest nutrition total was " + str(name) + " kcal.\nGood Work! Keep on exercising and improving overall health!"
     )
 
 def send_messagefunc_nutrition(request):
     if request.method == 'GET':
-        account_sid = "ACac4b4ad89b8e8c0c75cabce115e5e841"
-        auth_token = "1c09620916081dd7ad9a3cd11d25a558"
+        account_sid = environ.os["TWILIO_ACCOUNT_SID"]
+        auth_token = environ.os["TWILIO_AUTH_TOKEN"]
         cur_time = str(datetime.now())
         # dataSource['data'] = []
         for key in Statistic.objects.all():
@@ -279,12 +279,12 @@ def submit(request):
 
 def your_view_name(request):
   if request.method == 'GET':
-    form = your_form_name() 
+    form = your_form_name()
   else:
     if form.is_valid():
       info = request.POST['info_name']
-      output = script_function(info) 
-      # Here you are calling script_function, 
+      output = script_function(info)
+      # Here you are calling script_function,
       # passing the POST data for 'info' to it;
       return render(request, 't1health_app/front_page.html', {
         'info': info,
@@ -295,7 +295,7 @@ def your_view_name(request):
   })
 
   def script_function(post_from_form):
-    return subprocess.check_call(['test.py', post_from_form])  
+    return subprocess.check_call(['test.py', post_from_form])
 
 # def main_loginpage(request):
 #     return render(request, )
